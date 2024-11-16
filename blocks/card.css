@@ -23,6 +23,8 @@
   background-image: url(../images/heart.svg);
   width: 23px;
   height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
   border: none;
   background-color: transparent;
   padding: 0;
