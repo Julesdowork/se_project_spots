@@ -21,6 +21,7 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 353px;
+  color: #212121;
 }
 
 .card__like-btn {
@@ -33,7 +34,8 @@
   background-color: transparent;
   padding: 0;
   opacity: 0.4;
-  transition: opacity 0.5s;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 .card__like-btn:hover {

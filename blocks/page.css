@@ -2,6 +2,9 @@
   background-color: #fcf5e5;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   color: #212121;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .page__section {

@@ -1,5 +1,6 @@
 .footer {
   padding: 60px 0;
+  flex-shrink: 0;
 }
 
 .footer__copyright {
@@ -7,5 +8,6 @@
   text-align: center;
   font-size: 16px;
   line-height: 1;
+  color: #212121;
   opacity: 0.7;
 }
