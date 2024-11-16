@@ -7,6 +7,8 @@
 .profile__avatar {
   margin-right: 20px;
   border-radius: 8px;
+  width: 190px;
+  height: 190px;
 }
 
 .profile__column {
@@ -35,6 +37,16 @@
   font-size: 16px;
   line-height: 1;
   opacity: 0.7;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  color: #212121;
+  opacity: 0.7;
+}
+
+.profile__btn-icon {
+  margin-right: 8px;
 }
 
 .profile__add-btn {
@@ -43,4 +55,50 @@
   font-size: 16px;
   line-height: 1;
   color: #fcf5e5;
+  background-color: #212121;
+  padding: 18px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 764px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 20px;
+    border-bottom: 1px solid rgb(33, 33, 33, 0.4);
+    text-align: center;
+  }
+
+  .profile__avatar {
+    margin-right: 0;
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile__name {
+    margin: 12px 0 6px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .profile__description {
+    margin: 0 0 32px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.7;
+  }
+
+  .profile__edit-btn {
+    margin: 0 0 20px 0;
+  }
+
+  .profile__add-btn {
+    margin-left: 0;
+    width: 100%;
+  }
 }
