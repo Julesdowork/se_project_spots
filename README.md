@@ -25,7 +25,7 @@ Spots is an image sharing site that is browsable on all devices. Users create pr
 
 ## Images
 
-![Spots on Desktop](./images/screen-desktop-sm.png)
+![Spots on Desktop](./images/screen-desktop-50.png)
 ![Spots on Mobile](./images/screen-mobile-50.png)
 
 ## Video
