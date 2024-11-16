@@ -25,7 +25,8 @@ Spots is an image sharing site that is browsable on all devices. Users create pr
 
 ## Images
 
-Coming soon...
+![Spots on Desktop](./images/screen-desktop-sm.png)
+![Spots on Mobile](./images/screen-mobile-50.png)
 
 ## Video
 
@@ -33,4 +34,4 @@ Coming soon...
 
 ## Link
 
-Coming soon...
+[Spots Website](https://julesdowork.github.io/se_project_spots/ "Spots Website")
