@@ -40,7 +40,7 @@
   background-color: transparent;
   border: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   color: #212121;
   opacity: 0.7;
 }
@@ -51,6 +51,7 @@
 
 .profile__add-btn {
   margin-left: auto;
+  margin-top: auto;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -95,6 +96,7 @@
 
   .profile__edit-btn {
     margin: 0 0 20px 0;
+    justify-content: center;
   }
 
   .profile__add-btn {
