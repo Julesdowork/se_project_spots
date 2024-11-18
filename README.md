@@ -30,7 +30,7 @@ Spots is an image sharing site that is browsable on all devices. Users create pr
 
 ## Video
 
-Coming soon...
+[Devlog](https://drive.google.com/file/d/1K_pR6Lv4-rHMKcfhodW4fNY4THPpautb/view?usp=sharing "Devlog")
 
 ## Link
 
