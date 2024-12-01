@@ -29,8 +29,25 @@ const editModal = document.querySelector("#edit-modal");
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const editModalCloseButton = editModal.querySelector(".modal__close-btn");
 
+const profileFormElement = document.querySelector(".modal__form");
+const nameInput = profileFormElement.querySelector("#profile-name-input");
+const descriptionInput = profileFormElement.querySelector(
+  "#profile-description-input"
+);
+
+const profileNameElement = document.querySelector(".profile__name");
+const profileJobElement = document.querySelector(".profile__description");
+
+// console.log(nameInput.value);
+// console.log(descriptionInput.value);
+// console.log(profileNameElement.textContent);
+// console.log(profileJobElement.textContent);
+
 function openModal() {
   editModal.classList.add("modal_opened");
+
+  nameInput.value = profileNameElement.textContent;
+  descriptionInput.value = profileJobElement.textContent;
 }
 
 profileEditButton.addEventListener("click", openModal);
