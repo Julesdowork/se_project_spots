@@ -1,34 +1,33 @@
 const initialCards = [
   {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+    name: "Forward Pass",
+    link: "../images/1-the-new-york-public-library-fnDFfaGwIxI-unsplash.jpg",
   },
   {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+    name: "Blue mountain folds",
+    link: "../images/2-paul-pastourmatzis-mqO0Rf-PUMs-unsplash.jpg",
   },
   {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+    name: "Moon over Kyoto",
+    link: "../images/3-marek-piwnicki-SjNDJm5LSnY-unsplash.jpg",
   },
   {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+    name: "Chicago Time",
+    link: "../images/4-anton-melekh-QqntN8-hcKo-unsplash.jpg",
   },
   {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+    name: "A group of rocks in the middle of a forest",
+    link: "../images/5-edwin-chen-uFH7yP-hy44-unsplash.jpg",
   },
   {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+    name: "Surrounded by pigeons",
+    link: "../images/6-danny-greenberg-UD0SfgEq5WY-unsplash.jpg",
   },
 ];
 
 const editModal = document.querySelector("#edit-modal");
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const editModalCloseButton = editModal.querySelector(".modal__close-btn");
-const editModalForm = editModal.querySelector(".modal__form");
 
 const profileFormElement = document.querySelector(".modal__form");
 const nameInput = profileFormElement.querySelector("#profile-name-input");
@@ -40,6 +39,9 @@ const profileNameElement = document.querySelector(".profile__name");
 const profileDescriptionElement = document.querySelector(
   ".profile__description"
 );
+
+const cardTemplate = document.querySelector("#card-template").content;
+const cardsListElement = document.querySelector(".cards__list");
 
 function openModal() {
   editModal.classList.add("modal_opened");
@@ -64,6 +66,24 @@ function handleProfileSubmitForm(evt) {
   closeModal();
 }
 
+function getCardElement(data) {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImageEl = cardElement.querySelector(".card__image");
+
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
+  cardTitleEl.textContent = data.name;
+
+  return cardElement;
+}
+
 profileEditButton.addEventListener("click", openModal);
 editModalCloseButton.addEventListener("click", closeModal);
-editModalForm.addEventListener("submit", handleProfileSubmitForm);
+profileFormElement.addEventListener("submit", handleProfileSubmitForm);
+
+for (let i = 0; i < initialCards.length; i++) {
+  const cardElement = getCardElement(initialCards[i]);
+
+  cardsListElement.append(cardElement);
+}
