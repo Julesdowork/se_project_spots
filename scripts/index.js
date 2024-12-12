@@ -82,6 +82,16 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
+  const cardLikeBtn = cardElement.querySelector(".card__like-btn");
+  cardLikeBtn.addEventListener("click", () => {
+    cardLikeBtn.classList.toggle("card__like-btn_liked");
+  });
+
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
+  cardDeleteBtn.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
   return cardElement;
 }
 
