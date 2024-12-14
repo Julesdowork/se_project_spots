@@ -1,31 +1,31 @@
 const initialCards = [
   {
     name: "Forward Pass",
-    link: "../images/1-the-new-york-public-library-fnDFfaGwIxI-unsplash.jpg",
+    link: "./images/1-the-new-york-public-library-fnDFfaGwIxI-unsplash.jpg",
   },
   {
     name: "Blue mountain folds",
-    link: "../images/2-paul-pastourmatzis-mqO0Rf-PUMs-unsplash.jpg",
+    link: "./images/2-paul-pastourmatzis-mqO0Rf-PUMs-unsplash.jpg",
   },
   {
     name: "Moon over Kyoto",
-    link: "../images/3-marek-piwnicki-SjNDJm5LSnY-unsplash.jpg",
+    link: "./images/3-marek-piwnicki-SjNDJm5LSnY-unsplash.jpg",
   },
   {
     name: "Chicago Time",
-    link: "../images/4-anton-melekh-QqntN8-hcKo-unsplash.jpg",
+    link: "./images/4-anton-melekh-QqntN8-hcKo-unsplash.jpg",
   },
   {
     name: "A group of rocks in the middle of a forest",
-    link: "../images/5-edwin-chen-uFH7yP-hy44-unsplash.jpg",
+    link: "./images/5-edwin-chen-uFH7yP-hy44-unsplash.jpg",
   },
   {
     name: "Surrounded by pigeons",
-    link: "../images/6-danny-greenberg-UD0SfgEq5WY-unsplash.jpg",
+    link: "./images/6-danny-greenberg-UD0SfgEq5WY-unsplash.jpg",
   },
   {
     name: "Golden Gate Bridge",
-    link: "../images/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+    link: "./images/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 ];
 
@@ -61,8 +61,11 @@ const newPostFormElement = document.querySelector(
 const imageLinkInput = document.querySelector("#new-image-input");
 const captionInput = document.querySelector("#post-caption-input");
 
+// image preview modal elements
 const previewModal = document.querySelector("#preview-modal");
-const previewModalCloseButton = previewModal.querySelector(".modal__close-btn_type_preview");
+const previewModalCloseButton = previewModal.querySelector(
+  ".modal__close-btn_type_preview"
+);
 const previewModalImg = previewModal.querySelector(".modal__image");
 const previewModalCaption = previewModal.querySelector(".modal__caption");
 
