@@ -54,6 +54,7 @@ const newPostButton = document.querySelector(".profile__add-btn");
 const newPostFormElement = document.forms["new-post"];
 const imageLinkInput = document.querySelector("#new-image-input");
 const captionInput = document.querySelector("#post-caption-input");
+const newPostSubmitBtn = newPostFormElement.querySelector(".modal__submit-btn");
 
 // image preview modal elements
 const previewModal = document.querySelector("#preview-modal");
@@ -123,6 +124,7 @@ function handleNewPostSubmitForm(evt) {
 
   closeModal(newPostModal);
   newPostFormElement.reset();
+  disableButton(newPostSubmitBtn, settings);
 }
 
 function renderCard(card, method = "prepend") {
@@ -138,6 +140,7 @@ closeButtons.forEach(button => {
 profileEditButton.addEventListener("click", function () {
   nameInput.value = profileNameElement.textContent;
   descriptionInput.value = profileDescriptionElement.textContent;
+  resetValidation(profileFormElement, [nameInput, descriptionInput], settings);
   openModal(editModal);
 });
 
