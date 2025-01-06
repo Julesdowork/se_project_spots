@@ -66,10 +66,19 @@ const closeButtons = document.querySelectorAll(".modal__close-btn");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscapeKeyPressed);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscapeKeyPressed);
+}
+
+function handleEscapeKeyPressed(evt) {
+  if (evt.key === "Escape") {
+    const modalEl = document.querySelector(".modal_opened");
+    closeModal(modalEl);
+  }
 }
 
 function handleProfileSubmitForm(evt) {
@@ -132,7 +141,7 @@ function renderCard(card, method = "prepend") {
   cardsListElement[method](cardElement);
 }
 
-closeButtons.forEach(button => {
+closeButtons.forEach((button) => {
   const modal = button.closest(".modal");
   button.addEventListener("click", () => closeModal(modal));
 });
@@ -149,6 +158,14 @@ profileFormElement.addEventListener("submit", handleProfileSubmitForm);
 newPostButton.addEventListener("click", () => openModal(newPostModal));
 
 newPostFormElement.addEventListener("submit", handleNewPostSubmitForm);
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("mousedown", function(evt) {
+    if (evt.target.classList.contains("modal_opened")) {
+      closeModal(modal);
+    }
+  });
+});
 
 initialCards.forEach((item) => {
   renderCard(item, "append");
