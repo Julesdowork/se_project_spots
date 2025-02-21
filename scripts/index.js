@@ -1,3 +1,5 @@
+import { enableValidation, resetValidation, disableButton, settings as validationConfig } from "./validation.js";
+
 const initialCards = [
   {
     name: "Forward Pass",
@@ -133,7 +135,7 @@ function handleNewPostSubmitForm(evt) {
 
   closeModal(newPostModal);
   newPostFormElement.reset();
-  disableButton(newPostSubmitBtn, settings);
+  disableButton(newPostSubmitBtn, validationConfig);
 }
 
 function renderCard(card, method = "prepend") {
@@ -149,7 +151,7 @@ closeButtons.forEach((button) => {
 profileEditButton.addEventListener("click", function () {
   nameInput.value = profileNameElement.textContent;
   descriptionInput.value = profileDescriptionElement.textContent;
-  resetValidation(profileFormElement, [nameInput, descriptionInput], settings);
+  resetValidation(profileFormElement, [nameInput, descriptionInput], validationConfig);
   openModal(editModal);
 });
 
@@ -170,3 +172,5 @@ document.querySelectorAll(".modal").forEach((modal) => {
 initialCards.forEach((item) => {
   renderCard(item, "append");
 });
+
+enableValidation(validationConfig);
