@@ -5,7 +5,7 @@ import {
   disableButton,
 } from "../scripts/validation.js";
 import { validationConfig } from "../utils/constants.js";
-import { setButtonText } from "../utils/helpers.js";
+import { handleSubmit } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
 const api = new Api({
@@ -35,7 +35,7 @@ const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 
 // avatar modal elements
 const avatarModal = document.querySelector("#edit-avatar-modal");
-const avatarFormElement = avatarModal.querySelector(".modal__form");
+const avatarForm = document.forms["edit-avatar"];
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 // photo card elements
@@ -97,42 +97,28 @@ function handleEscapeKeyPressed(evt) {
 }
 
 function handleProfileSubmitForm(evt) {
-  evt.preventDefault();
+  function makeRequest() {
+    return api
+      .editUserInfo({ name: nameInput.value, about: descriptionInput.value })
+      .then((data) => {
+        profileNameElement.textContent = data.name;
+        profileDescriptionElement.textContent = data.about;
+        closeModal(editModal);
+      });
+  }
 
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
-
-  api
-    .editUserInfo({ name: nameInput.value, about: descriptionInput.value })
-    .then((data) => {
-      profileNameElement.textContent = data.name;
-      profileDescriptionElement.textContent = data.about;
-
-      closeModal(editModal);
-    })
-    .catch((err) => console.error(err))
-    .finally(() => {
-      setButtonText(submitBtn, false);
-    });
+  handleSubmit(makeRequest, evt);
 }
 
 function handleAvatarSubmitForm(evt) {
-  evt.preventDefault();
-
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
-
-  api
-    .editAvatarPicture({ avatar: avatarInput.value })
-    .then((data) => {
+  function makeRequest() {
+    return api.editAvatarPicture({ avatar: avatarInput.value }).then((data) => {
       profileAvatarElement.src = data.avatar;
-
       closeModal(avatarModal);
-    })
-    .catch((err) => console.error(err))
-    .finally(() => {
-      setButtonText(submitBtn, false);
     });
+  }
+
+  handleSubmit(makeRequest, evt);
 }
 
 function getCardElement(data) {
@@ -182,36 +168,29 @@ function handleDeleteCard(cardElement, cardId) {
 }
 
 function handleDeleteSubmit(evt) {
-  evt.preventDefault();
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Deleting...", "Delete");
-
-  api
-    .deleteCard(selectedCardId)
-    .then(() => {
+  function makeRequest() {
+    return api.deleteCard(selectedCardId).then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
-    })
-    .catch((err) => console.log(err))
-    .finally(() => setButtonText(submitBtn, false, "Deleting...", "Delete"));
+    });
+  }
+
+  handleSubmit(makeRequest, evt, "Deleting...");
 }
 
 function handleNewPostSubmitForm(evt) {
-  evt.preventDefault();
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true);
+  function makeRequest() {
+    return api
+      .addNewCard({ name: captionInput.value, link: imageLinkInput.value })
+      .then((res) => {
+        const data = res;
+        renderCard(data);
+        closeModal(newPostModal);
+        disableButton(newPostSubmitBtn, validationConfig);
+      });
+  }
 
-  api
-    .addNewCard({ name: captionInput.value, link: imageLinkInput.value })
-    .then((res) => {
-      const data = res;
-      renderCard(data);
-      closeModal(newPostModal);
-      newPostFormElement.reset();
-      disableButton(newPostSubmitBtn, validationConfig);
-    })
-    .catch((err) => console.error(err))
-    .finally(() => setButtonText(submitBtn, false));
+  handleSubmit(makeRequest, evt);
 }
 
 function renderCard(card, method = "prepend") {
@@ -239,7 +218,7 @@ profileFormElement.addEventListener("submit", handleProfileSubmitForm);
 avatarModalBtn.addEventListener("click", function () {
   openModal(avatarModal);
 });
-avatarFormElement.addEventListener("submit", handleAvatarSubmitForm);
+avatarForm.addEventListener("submit", handleAvatarSubmitForm);
 
 newPostButton.addEventListener("click", () => openModal(newPostModal));
 newPostFormElement.addEventListener("submit", handleNewPostSubmitForm);
