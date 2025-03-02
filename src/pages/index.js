@@ -201,21 +201,17 @@ function handleNewPostSubmitForm(evt) {
   const submitBtn = evt.submitter;
   setButtonText(submitBtn, true);
 
-  const data = {};
-  data.link = imageLinkInput.value;
-  data.name = captionInput.value;
-
   api
-    .addNewCard({ name: data.name, link: data.link })
-    .then(() => {})
+    .addNewCard({ name: captionInput.value, link: imageLinkInput.value })
+    .then((res) => {
+      const data = res;
+      renderCard(data);
+      closeModal(newPostModal);
+      newPostFormElement.reset();
+      disableButton(newPostSubmitBtn, validationConfig);
+    })
     .catch((err) => console.error(err))
     .finally(() => setButtonText(submitBtn, false));
-
-  renderCard(data);
-
-  closeModal(newPostModal);
-  newPostFormElement.reset();
-  disableButton(newPostSubmitBtn, validationConfig);
 }
 
 function renderCard(card, method = "prepend") {
