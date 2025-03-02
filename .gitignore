@@ -1,2 +1,4 @@
 .DS_Store
-pat.txt
+
+node_modules/
+dist/

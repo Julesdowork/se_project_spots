@@ -9,23 +9,35 @@
       name="keywords"
       content="HTML, CSS, Responsive, Grid, Bessie Coleman, image sharing"
     />
-    <link rel="stylesheet" href="pages/index.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="images/logo.svg" alt="The Spots logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="The Spots logo"
+          class="header__logo"
+        />
       </header>
 
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="images/avatar.jpg"
-            alt="A picture of Bessie Coleman"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                src="<%=require('./images/pencil_light.svg')%>"
+                alt="Pencil icon light"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="A picture of Bessie Coleman"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -85,7 +97,10 @@
                 minlength="2"
                 maxlength="200"
               />
-              <span id="profile-description-input-error" class="modal__error"></span>
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -133,17 +148,61 @@
             class="modal__close-btn modal__close-btn_type_preview"
           ></button>
           <figure class="modal__figure">
-            <img
-              src=""
-              alt=""
-              class="modal__image"
-            />
+            <img src="" alt="" class="modal__image" />
             <figcaption class="modal__caption"></figcaption>
           </figure>
         </div>
       </div>
-    </div>
 
-    <script src="./scripts/index.js" type="module"></script>
+      <div id="edit-avatar-modal" class="modal">
+        <div class="modal__container">
+          <h2 class="modal__title">Edit profile avatar</h2>
+          <button type="button" class="modal__close-btn"></button>
+          <form name="edit-avatar" class="modal__form" novalidate>
+            <label for="profile-avatar-input" class="modal__label">
+              Profile Picture
+              <input
+                id="profile-avatar-input"
+                type="text"
+                class="modal__input"
+                placeholder="Paste the link to an image"
+                required
+                minlength="2"
+              />
+              <span id="profile-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="delete-modal" class="modal">
+        <div class="modal__container modal__container_type_delete">
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_type_preview"
+          ></button>
+          <h2 class="modal__delete-title">
+            Are you sure you want to delete this image?
+          </h2>
+          <form name="delete-card" class="modal__form" novalidate>
+            <div class="modal__button-group">
+              <button
+                type="submit"
+                class="modal__submit-btn modal__submit-btn_color_red"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                class="modal__cancel-btn"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
